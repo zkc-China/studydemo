@@ -1,12 +1,22 @@
-# gebilaoer
+# todolist 
 
-> A Vue.js project
+>  帮助萌新完成 vue.js + egg.js + mysql 完成一个小项目
+
+## 计划列表
+
+### 使用 vue-cli 搭建一个前端项目
+
+### 使用 egg.js 作为后端
+
+### 使用 mysql
 
 ## Build Setup
 
 ``` bash
 # install dependencies
 npm install
+
+如果在下载 chromedriver 请关闭, 重新 npm install 就行
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -26,5 +36,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
