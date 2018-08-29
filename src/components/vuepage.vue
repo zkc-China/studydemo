@@ -4,24 +4,30 @@
       <p>todos</p>
     </div>
     <div class="conent">
+      <input type="checkbox" name="todoInfo" class="allSelect">
       <input type="text" placeholder="What needs to be done?" class="userinput">
       <div class="list">
+        <input type="checkbox" name="todoInfo" id="">
         <span>阿斯达斯的 阿斯达斯的 阿斯达斯的 </span>
         <button class="delect">X</button>
       </div>
       <div class="list">
+        <input type="checkbox" name="todoInfo" id="">
         <span>阿斯达斯的 阿斯达斯的 阿斯达斯的 </span>
         <button class="delect">X</button>
       </div>
       <div class="list">
+        <input type="checkbox" name="todoInfo" id="">
         <span>阿斯达斯的 阿斯达斯的 阿斯达斯的 </span>
         <button class="delect">X</button>
       </div>
       <div class="list">
+        <input type="checkbox" name="todoInfo" id="">
         <span>阿斯达斯的 阿斯达斯的 阿斯达斯的 </span>
         <button class="delect">X</button>
       </div>
       <div class="list">
+        <input type="checkbox" name="todoInfo" id="">
         <span>阿斯达斯的 阿斯达斯的 阿斯达斯的 </span>
         <button class="delect">X</button>
       </div>
@@ -29,7 +35,7 @@
         <input type="text" class="edit" value="asdasd">
       </div>
       <div class="list ">
-        <span class="textover">asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</span>
+        <span class="textover">asdasdadaasdasdadaasdasdadaasdasdadaasdasdadaasdasdada</span>
         <button class="delect">X</button>
       </div>
       <div class="list">
@@ -74,12 +80,29 @@ export default {
 </script>
 
 <style>
-
 .conent {
   width: 550px;
   margin: 10px auto;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 100px;
+  position: relative;
+}
+.conent .allSelect {
+  position: absolute;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  -webkit-appearance: none;
+  transform: rotate(90deg);
+}
+.conent .allSelect:before {
+  content: "❯";
+  font-size: 22px;
+  color: #e6e6e6;
+  padding: 10px 27px 10px 27px;
+}
+.conent .allSelect:checked:before {
+  color: #737373;
 }
 .title p {
   margin: 0px;
@@ -87,15 +110,14 @@ export default {
   font-size: 100px;
 }
 .userinput {
-  width: 540px;
+  width: 490px;
   height: 65px;
   line-height: 33px;
   font-size: 24px;
   border: 0px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.2);
-  padding-left: -10px;
+  padding-left: 60px;
 }
 .userinput::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.2);
@@ -121,16 +143,32 @@ ul li {
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.list input {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: 10px 0 10px;
+  -webkit-appearance: none;
+  background: none;
+  outline: none;
+}
+.list input::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+.list input:checked:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
 .list span {
-  width: 480px;
+  width: 430px;
   display: inherit;
   padding: 15px 60px 15px 15px;
+  -webkit-transition: color 0.4s;
   transition: color 0.4s;
   vertical-align: middle;
   position: relative;
   white-space: pre-line;
   word-break: break-all;
-  line-break: 35px;
+  margin-left: 50px;
 }
 .list .textover {
   width: 480px;
@@ -221,6 +259,7 @@ ul li {
   box-shadow: rgba(0, 0, 0, 0.2);
   outline: none;
   padding-left: 20px;
+  margin: 0;
 }
 /* .userinput:focus {
   outline-color: rgba(0, 0, 0, 0.9);

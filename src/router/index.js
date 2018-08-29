@@ -1,31 +1,39 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import vuepage from '@/components/vuepage'
+import jquerypage from '@/components/jquerypage'
+import javascriptpage from '@/components/javascriptpage'
 import todo from '@/components/todo'
-import query from '@/components/jq'
-import yuan from '@/components/yuan'
-import v from '@/components/v'
 Vue.use(Router)
 
 export default new Router({
     mode: 'history',
+    watch: {
+        "$route" (to, from) {
+            console.log(to);
+        }
+    },
     routes: [{
         path: '*',
-        name: 'todo',
-        component: v,
+        name: '/todo/vuepage',
+        component: vuepage,
     }, {
-        path: '/',
-        redirect: '/todo'
+        path: '*',
+        redirect: to => {
+            router.go(path)
+        }
     }, {
-        path: '/todo/query',
-        name: 'query',
-        component: query
+        path: '/todo/jquerypage',
+        name: 'jquerypage',
+        component: jquerypage
     }, {
-        path: '/todo/yuan',
-        name: 'yuan',
-        component: yuan
+        path: '/todo/javascriptpage',
+        name: 'javascriptpage',
+        component: javascriptpage
     }, {
-        path: '/todo/v',
-        name: 'v',
-        component: v
+        path: '/todo/vuepage',
+        name: 'vuepage',
+        component: vuepage
     }]
+
 })
