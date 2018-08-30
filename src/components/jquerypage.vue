@@ -150,7 +150,9 @@ li {
   white-space: pre-line;
   word-break: break-all;
 }
-
+.todolist .listinfo li:hover > bottom{
+  display: block;
+}
 .todolist .listinfo .delete {
   position: absolute;
   background: rgba(0, 0, 0, 0);
@@ -165,6 +167,7 @@ li {
   color: #cc9a9a;
   margin-bottom: 11px;
   outline: none;
+  display: none;
 }
 .todolist .listinfo .userChangeTodo {
   width: 499px;

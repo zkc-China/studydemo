@@ -4,25 +4,12 @@ import vuepage from '@/components/vuepage'
 import jquerypage from '@/components/jquerypage'
 import javascriptpage from '@/components/javascriptpage'
 import todo from '@/components/todo'
+import errorpage from '@/components/errorpage'
 Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    watch: {
-        "$route" (to, from) {
-            console.log(to);
-        }
-    },
     routes: [{
-        path: '*',
-        name: '/todo/vuepage',
-        component: vuepage,
-    }, {
-        path: '*',
-        redirect: to => {
-            router.go(path)
-        }
-    }, {
         path: '/todo/jquerypage',
         name: 'jquerypage',
         component: jquerypage
@@ -34,6 +21,13 @@ export default new Router({
         path: '/todo/vuepage',
         name: 'vuepage',
         component: vuepage
+    }, {
+        path: '/404',
+        name: '404',
+        component: errorpage
+    }, {
+        path: '*',
+        redirect: '/404',
     }]
 
 })
