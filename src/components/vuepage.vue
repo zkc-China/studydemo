@@ -317,4 +317,5 @@ export default {
   font-size: 100px;
   color: rgba(255, 0, 0, 0.1);
 }
+
 </style>

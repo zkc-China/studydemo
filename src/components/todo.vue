@@ -72,6 +72,7 @@
 </template>
 <script>
 export default {
+
   name: "todulist",
   methods: {
     aaa() {}
@@ -227,42 +228,5 @@ ul li {
   border: 1px solid rgba(255, 0, 0, 0.2);
   border-radius: 3px;
 }
-
-.footer a {
-  margin-left: 40px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
-}
-.footer::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 50px;
-  overflow: hidden;
-  z-index: -1;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6,
-    0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6,
-    0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
-.list .edit {
-  width: 526px;
-  height: 65px;
-  line-height: 33px;
-  font-size: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  box-shadow: rgba(0, 0, 0, 0.2);
-  outline: none;
-  padding-left: 20px;
-  margin: 0;
-}
-/* .userinput:focus {
-  outline-color: rgba(0, 0, 0, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
-} */
 </style>
+
