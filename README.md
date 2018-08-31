@@ -18,21 +18,13 @@ npm install
 
 如果在下载 chromedriver 请关闭, 重新 npm install 就行
 
-# serve with hot reload at localhost:8080
+# 开发 localhost:8080
 npm run dev
 
-# build for production with minification
+# 编译 build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
+# 编译(附带 report) build for production and view the bundle analyzer report
 npm run build --report
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
