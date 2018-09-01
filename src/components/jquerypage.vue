@@ -56,53 +56,7 @@ export default {};
 </script>
 
 <style scoped>
-.app {
-  width: 550px;
-  margin: 0 auto 0;
-  background: rgba(0, 0, 0, 0);
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-.title span {
-  font-size: 100px;
-  color: rgba(255, 0, 0, 0.1);
-}
-.todoinput {
-  position: relative;
-  width: 550px;
-  height: 50px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.todoinput .todolistSelectAll {
-  width: 50px;
-  height: 50px;
-  transform: rotate(90deg);
-  -webkit-appearance: none;
-  outline: none;
-  position: absolute;
-  margin: 0;
-  margin-top: -10px;
-  margin-left: -10px;
-}
-.todoinput .todolistSelectAll::before {
-  content: "❯";
-  font-size: 22px;
-  color: #e6e6e6;
-  padding: 10px 27px 10px 27px;
-}
-.todoinput .todolistSelectAll:checked:before {
-  color: #737373;
-}
-.todoinput .userinput {
-  width: 500px;
-  height: 50px;
-  margin-left: 50px;
-  font-size: 22px;
-  border: 0;
-  padding: 0;
-  outline: none;
-}
+
 
 .todoinput .userinput::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.2);
@@ -237,4 +191,3 @@ li {
     0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6,
     0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
-</style>

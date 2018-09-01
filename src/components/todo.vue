@@ -37,19 +37,7 @@
 
 
 <script>
-export default {
-  data() {
-    return {
-      onlySelectedShow: true,
-      onlyUnselectedShow: true,
-      editStatue: false,
-      slectAllState: false,
-      newTodoText: "",
-      todolist: [],
-      checkTodolist: [],
-      editedTodo:null,
-    };
-  },
+
   methods: {
     addNewTodo: function() {
       this.todolist.push({
