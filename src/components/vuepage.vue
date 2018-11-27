@@ -5,7 +5,7 @@
     </div>
     <div class="app">
       <div class="todoinput">
-        <input type="checkbox" name="" id="" class="todolistSelectAll" v-model="slectAllState" v-on:change="change">
+        <input type="checkbox" name="" id="" class="todolistSelectAll" v-model="slectAllState" v-on:change="change" v-show="todolist.length">
         <input type="text" name="" id="" class="userinput" placeholder="What needs to be done?" v-model="newTodoText"
                @keyup.enter="addNewTodo">
       </div>
@@ -20,7 +20,8 @@
               </div>
 
               <input type="text" class="userChangeTodo" v-show="item.editStatue" v-model="item.text"
-                     @blur="changeTodo(item)" v-on:change="changeTodo(item)"  v-focus.blue="editedTodo">
+                     @blur="changeTodo(item)" v-on:change="changeTodo(item)"  v-focus="editedTodo == item">
+            
             </li>
 
           </ul>
@@ -39,111 +40,103 @@
 
 
 <script>
-  export default {
-    data() {
-      return {
-        onlySelectedShow: true,
-        onlyUnselectedShow: true,
-        editStatue: false,
-        slectAllState: false,
-        newTodoText: "",
-        todolist: [],
-        checkTodolist: [],
-        editedTodo: null,
-      };
-    },
-    methods: {
-      addNewTodo: function () {
-        this.todolist.push({
-          text: this.newTodoText,
-          state: false,
-          editStatue: false
-        });
+import store from "./../vuex/store.js";
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      onlySelectedShow: true,
+      onlyUnselectedShow: true,
+      editStatue: false,
+      slectAllState: false,
+      newTodoText: "",
+      checkTodolist: [],
+      editedTodo: null
+    };
+  },
+  store,
+  computed: {
+    ...mapState(["todolist"])
+  },
+  methods: {
+    addNewTodo: function() {
+      var value = this.newTodoText && this.newTodoText.trim();
+      if (value) {
+        this.$store.commit("add", value);
         this.newTodoText = "";
-      },
-      selectAllCheckbox: function () {
-        this.todolist.map;
-      },
-      change: function () {
-        if (this.slectAllState) {
-          this.todolist.map(function (item) {
-            item.state = true;
-          });
-        } else {
-          this.todolist.map(function (item) {
-            item.state = false;
-          });
-        }
-      },
-      deleteThis: function (number) {
-        this.todolist.splice(number, 1);
-      },
-      edit: function (todo) {
-        todo.editStatue = true;
-        this.editedTodo = todo;
-      },
-      SelectedShow: function () {
-        this.onlySelectedShow = false;
-        this.onlyUnselectedShow = true;
-      },
-      UnselectedShow: function () {
-        this.onlyUnselectedShow = false;
-        this.onlySelectedShow = true;
-      },
-      allShow: function () {
-        this.onlySelectedShow = true;
-        this.onlyUnselectedShow = true;
-      },
-      deleteTodoList: function () {
-        this.todolist = [];
-      },
-      changeTodo: function (todo) {
-        todo.editStatue = false;
+      }
+    },
+    deleteThis: function(number) {
+      this.$store.commit("delect", number);
+    },
+    change: function() {},
+    changeTodo: function(data) {
+      if (data.text) {
+        data.editStatue = false;
         this.editedTodo = null;
+      }else{
+        this.$store.commit("delect", this.$store.state.todolist.indexOf(data));
       }
     },
-    watch: {
-      todolist: function () {
-        localStorage.setItem("todolist", JSON.stringify(this.todolist));
-      }
+    edit: function(data) {
+      data.editStatue = true;
+      this.editedTodo = data;
     },
-    mounted() {
-      console.log(this.todolist)
-      this.todolist = JSON.parse(window.localStorage.getItem("todolist")) || [];
+    SelectedShow: function() {
+      var ss = [];
+      todolist.filter(item => item.state);
     },
-    directives: {
-      demo: function (el, binding, vnode, voldnode) {
+    deleteTodoList:function(){
+      this.$store.commit('empty')
+    },
+    allShow:function(){
 
+    },
+    SelectedShow:function(){
+
+    },
+    UnselectedShow:function(){
+
+    }
+  },
+  watch: {
+    slectAllState:function(){
+      this.$store.commit('all',this.slectAllState)
+    }
+  },
+
+  directives: {
+    demo: function(el, binding, vnode, voldnode) {},
+    focus: {
+      bind: function(el) {
+        // document.createelement
+        console.log("bind");
       },
-      focus: {
-        bind: function (el) {
-          // document.createelement
-          console.log('bind')
-        },
-        inserted: function (el) {
-          // append
-          console.log('inserted')
-        },
-        update: function (el, binding) {
-          // append
-          console.log('update', binding)
-          if(binding.modifiers.red) {
-            el.style.border = '1px solid ' + 'red'
-          }
-          if(binding.modifiers.blue) {
-            el.style.border = '1px solid ' + 'blue'
-          }
-        },
-
-        componentUpdated: function (el, binding) {
-          // append
-          console.log('componentUpdated', binding)
-        },
-        unbind: function (el, binding) {
-          console.log('unbind')
+      inserted: function(el) {
+        // append
+        console.log("inserted");
+      },
+      update: function(el, binding) {
+        // append
+        console.log("update", binding);
+        if (binding.modifiers.red) {
+          el.style.border = "1px solid " + "red";
         }
+        if (binding.modifiers.blue) {
+          el.style.border = "1px solid " + "blue";
+        }
+        el.focus();
+      },
+
+      componentUpdated: function(el, binding) {
+        // append
+        console.log("componentUpdated", binding);
+      },
+      unbind: function(el, binding) {
+        console.log("unbind");
       }
     }
-  };
+  }
+};
 </script>
 
