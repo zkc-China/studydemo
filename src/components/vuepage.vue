@@ -12,7 +12,7 @@
       <div class="todolist" v-if="todolist.length">
         <div class="listinfo">
           <ul>
-            <li v-for="(item,index) in todolist" :key="item.id" v-show="onlySelectedShow">
+            <li v-for="(item,index) in owntodolist" :key="item.id" v-show="onlySelectedShow">
               <div v-show="!item.editStatue">
                 <input type="checkbox" class="todoCheck" v-model="item.state">
                 <span v-bind:class="{todoOver:item.state}" @dblclick="edit(item)">{{item.text}}</span>
@@ -28,9 +28,9 @@
         </div>
         <div class="listbutton">
           <span>{{todolist.length}} items left</span>
-          <button v-on:click="allShow">All</button>
-          <button v-on:click="SelectedShow">Active</button>
-          <button v-on:click="UnselectedShow">Completed</button>
+          <button v-on:click="aaaa('All')">All</button>
+          <button v-on:click="aaaa('Active')">Active</button>
+          <button v-on:click="aaaa('Completed')">Completed</button>
           <a v-on:click="deleteTodoList">Clear completed</a>
         </div>
       </div>
@@ -41,7 +41,7 @@
 
 <script>
 import store from "./../vuex/store.js";
-import { mapState } from "vuex";
+import { mapState,mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -51,12 +51,18 @@ export default {
       slectAllState: false,
       newTodoText: "",
       checkTodolist: [],
-      editedTodo: null
+      editedTodo: null,
+      zzzz:'todos',
     };
   },
   store,
   computed: {
-    ...mapState(["todolist"])
+    ...mapState(["todolist"]),
+    ...mapGetters(['doneTodos','noTodos','todos']),
+    owntodolist:function(){
+      console.log(this.$store.getters[this.zzzz])
+      return this.$store.getters[this.zzzz]
+    }
   },
   methods: {
     addNewTodo: function() {
@@ -82,27 +88,57 @@ export default {
       data.editStatue = true;
       this.editedTodo = data;
     },
-    SelectedShow: function() {
-      var ss = [];
-      todolist.filter(item => item.state);
-    },
     deleteTodoList:function(){
       this.$store.commit('empty')
     },
     allShow:function(){
 
     },
-    SelectedShow:function(){
+    // SelectedShow:function(){
 
+    // },
+    // UnselectedShow:function(){
+
+    // }
+    aaaa:function(type){
+      let data = [];
+      switch(type){
+        case 'All':
+        data = 'todos';
+        break;
+        case 'Active':
+        data = 'noTodos';
+        break;
+        case 'Completed':
+        data = 'doneTodos';
+        break;
+        default:
+        data = 'todos';
+        break
+      }
+      // return data;
+      this.zzzz = data;
     },
-    UnselectedShow:function(){
-
-    }
+    // save:function(){
+    //   const STORAGE_KEY = 'todos-vuejs';
+    //   localStorage.setItem(STORAGE_KEY, JSON.stringify(this.$store.state.todolist));
+    // }
   },
+ 
   watch: {
     slectAllState:function(){
       this.$store.commit('all',this.slectAllState)
-    }
+    },
+    // owntodolist:function(){
+      
+    //   console.log('asdads');
+    //   const STORAGE_KEY = 'todos-vuejs';
+    //   localStorage.setItem(STORAGE_KEY, JSON.stringify(this.$store.state.todolist));
+    // }
+    // owntodolist:{
+    //   deep:true,
+    //   handler: this.save()
+    // }
   },
 
   directives: {
